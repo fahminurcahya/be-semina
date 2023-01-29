@@ -7,7 +7,9 @@ var app = express();
 const authCMSRouter = require("./app/api/v1/auth/router");
 const categoriesRouter = require("./app/api/v1/categories/router");
 const imagesRouter = require("./app/api/v1/images/router");
+const talentsRouter = require("./app/api/v1/talents/router");
 const organizersRouter = require("./app/api/v1/organizers/router");
+
 const v1 = "/api/v1/cms";
 
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -29,6 +31,7 @@ app.get("/", (req, res) => {
 app.use(v1, categoriesRouter);
 app.use(`${v1}/organizers`, organizersRouter);
 app.use(`${v1}/images`, imagesRouter);
+app.use(`${v1}/talents`, talentsRouter);
 app.use(`${v1}/auth`, authCMSRouter);
 
 app.use(notFoundMiddleware);
