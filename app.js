@@ -6,6 +6,7 @@ var logger = require("morgan");
 var app = express();
 const authCMSRouter = require("./app/api/v1/auth/router");
 const categoriesRouter = require("./app/api/v1/categories/router");
+const imagesRouter = require("./app/api/v1/images/router");
 const organizersRouter = require("./app/api/v1/organizers/router");
 const v1 = "/api/v1/cms";
 
@@ -27,6 +28,7 @@ app.get("/", (req, res) => {
 // gunakan categories router
 app.use(v1, categoriesRouter);
 app.use(`${v1}/organizers`, organizersRouter);
+app.use(`${v1}/images`, imagesRouter);
 app.use(`${v1}/auth`, authCMSRouter);
 
 app.use(notFoundMiddleware);

@@ -8,10 +8,10 @@ const {
   authorizeRoles,
 } = require("../../../middlewares/auth");
 
-router.get("/categories", authenticateUser, index);
-router.get("/categories/:id", authenticateUser, find);
-router.put("/categories/:id", authenticateUser, update);
-router.post("/categories", authenticateUser, create);
-router.delete("/categories/:id", authenticateUser, destroy);
+router.get("/categories", index);
+router.get("/categories/:id", find);
+router.put("/categories/:id", update);
+router.post("/categories", create);
+router.delete("/categories/:id", destroy);
 
 module.exports = router;
