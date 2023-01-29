@@ -9,6 +9,7 @@ const categoriesRouter = require("./app/api/v1/categories/router");
 const imagesRouter = require("./app/api/v1/images/router");
 const talentsRouter = require("./app/api/v1/talents/router");
 const organizersRouter = require("./app/api/v1/organizers/router");
+const eventsRouter = require("./app/api/v1/events/router");
 
 const v1 = "/api/v1/cms";
 
@@ -32,6 +33,7 @@ app.use(v1, categoriesRouter);
 app.use(`${v1}/organizers`, organizersRouter);
 app.use(`${v1}/images`, imagesRouter);
 app.use(`${v1}/talents`, talentsRouter);
+app.use(`${v1}/events`, eventsRouter);
 app.use(`${v1}/auth`, authCMSRouter);
 
 app.use(notFoundMiddleware);

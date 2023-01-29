@@ -7,7 +7,6 @@ const { NotFoundError, BadRequestError } = require("../../errors");
 
 const getAllTalents = async (req) => {
   const { keyword } = req.query;
-
   let condition = {};
 
   if (keyword) {
