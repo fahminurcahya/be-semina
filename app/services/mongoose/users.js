@@ -10,14 +10,20 @@ const createOrganizer = async (req) => {
   }
 
   const result = await Organizers.create({ organizer });
-
-  const users = await Users.create({
-    email,
-    name,
-    password,
-    organizer: result._id,
-    role,
-  });
+  let users;
+  try {
+    users = await Users.create({
+      email,
+      name,
+      password,
+      organizer: result._id,
+      role,
+    });
+  } catch (error) {
+    const orgnz = await Organizers.findOne({ _id: result._id });
+    orgnz && (await orgnz.remove());
+    throw error; // generates an error object with the message of Required
+  }
 
   delete users._doc.password;
 
