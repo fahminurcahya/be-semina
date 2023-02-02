@@ -6,7 +6,17 @@ const {
   getCMSUsers,
 } = require("./controller");
 
-router.post("/", createCMSOrganizer);
+const {
+  authenticateUser,
+  authorizeRoles,
+} = require("../../../middlewares/auth");
 
+router.post("/", createCMSOrganizer);
+router.post(
+  "/users",
+  authenticateUser,
+  authorizeRoles("organizer"),
+  createCMSUser
+);
 router.get("/users", getCMSUsers);
 module.exports = router;
