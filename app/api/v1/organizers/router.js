@@ -15,7 +15,7 @@ router.post("/", createCMSOrganizer);
 router.post(
   "/users",
   authenticateUser,
-  authorizeRoles("organizer"),
+  authorizeRoles("organizer", "owner"),
   createCMSUser
 );
 router.get("/users", getCMSUsers);

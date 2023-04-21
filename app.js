@@ -14,6 +14,7 @@ const eventsRouter = require("./app/api/v1/events/router");
 const ordersRouter = require("./app/api/v1/orders/router");
 const participantsRouter = require("./app/api/v1/participants/router");
 const paymentsRouter = require("./app/api/v1/payments/router");
+const refreshTokenRouter = require("./app/api/v1/refreshToken/router");
 
 const v1 = "/api/v1/cms";
 
@@ -27,12 +28,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.get("/", (req, res) => {
-  res.status(200).json({
-    message: "Welcome to api semina",
-  });
-});
-
 // gunakan categories router
 app.use(v1, categoriesRouter);
 app.use(`${v1}/organizers`, organizersRouter);
@@ -42,6 +37,7 @@ app.use(`${v1}/events`, eventsRouter);
 app.use(`${v1}/orders`, ordersRouter);
 app.use(`${v1}/payments`, paymentsRouter);
 app.use(`${v1}/auth`, authCMSRouter);
+app.use(`${v1}/refreshToken`, refreshTokenRouter);
 app.use("/api/v1", participantsRouter);
 
 app.use(notFoundMiddleware);
